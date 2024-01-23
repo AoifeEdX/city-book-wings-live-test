@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>CityBookWings</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-white" style="overflow-x: hidden;">
+
+	<header>
+
+		<img class="hero-img" src="./assets/images/hero-bibliobrooke-bookaddict247.jpg"
+			style="height: 100vh;width: 100vw;	object-fit: cover;filter: brightness(0.5); position: fixed;	top: 0;	left: 0; z-index: -1;">
+
+		<!-- Nav -->
+		<nav class="navbar navbar-expand-lg navbar-dark py-5" id="navbar">
+			<div class="container">
+				<a class="navbar-brand fs-3" href="/">CITY<span class="fw-normal text-warning">BOOK</span>WINGS</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu"
+					aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbar-menu">
+					<ul class="navbar-nav ms-auto fs-5">
+						<li class="nav-item ms-4"><a class="nav-link" href="#about">About</a></li>
+						<li class="nav-item ms-4"><a class="nav-link" href="#flights">Flights</a></li>
+						<li class="nav-item ms-4"><a class="nav-link" href="#books">Books</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<!-- End of Nav -->
+
+		<!-- Hero Section -->
+		<section id="hero" style="min-height: 600px;">
+			<div class="container">
+				<div class="row">
+					<!-- Left column -->
+					<div class="col-md-6 my-5 d-flex align-items-center">
+						<p class="display-6 text-white my-3">Get <span class="fw-normal text-warning">flight information</span> and
+							<span class="fw-normal text-warning">book recommendations</span> for your ideal&nbsp;holiday.
+						</p>
+					</div>
+					<!-- Right column -->
+					<div class="col-md-6 my-5">
+						<!-- Form -->
+						<form class="bg-light p-5">
+							<div class="form-group">
+
+								<div class="row">
+									<div class="col-md">
+										<div class="form-group">
+											<label for="locationFrom" class="mb-3 fs-5">From</label>
+											<input type="text" class="form-control mb-5" id="locationFrom" placeholder="City, Country"
+												required>
+										</div>
+									</div>
+									<div class="col-md">
+										<div class="form-group">
+											<label for="locationTo" class="mb-3 fs-5">To</label>
+											<input type="text" class="form-control mb-5" id="locationTo" placeholder="City, Country" required>
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-md">
+										<div class="form-group">
+											<label for="departureDate" class="mb-3 fs-5">Departure Date</label>
+											<div class="date-wrap">
+												<input type="date" id="departureDate" class="form-control  mb-3" required>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md">
+										<div class="form-group d-flex flex-column">
+											<label for="search-button" class="mb-3 text-light fs-5 d-block"> ` </label>
+											<a href="#loading" class="btn btn-warning btn-block  mb-3" type="submit"
+												onclick="loadingIcon(); getFlights(); getBooks();"><i class="fas fa-search"></i> Search</a>
+										</div>
+									</div>
+								</div>
+						</form>
+						<!-- End of Form -->
+
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End of Hero Section -->
+	</header>
+
+	<!-- Results from APIS Section -->
+	<div id="results" class="bg-light">
+		<div class="container">
+
+			<!-- Loading Section -->
+			<section id="loading" class="d-none text-center text-danger p-5 bg-light">
+				<div class="spinner-border text-center text-danger" role="status">
+				</div>
+				<p class="fs-4 text-center text-danger">Searching flights and books</p>
+			</section>
+			<!-- End of Loading Section -->
+
+
+			<!-- Flight Search Results Section -->
+			<section>
+				<div id="flightResults" class="pb-5">
+
+					<!-- Flight results will be displayed here -->
+
+				</div>
+			</section>
+			<!-- End of Flight Search Results Section-->
+
+			<!-- Book Search Results Section -->
+			<section>
+				<div id="bookResults" class="pb-5">
+
+					<!-- Book results will be displayed here -->
+
+				</div>
+			</section>
+			<!-- End of Book Search Results Section -->
+
+		</div>
+	</div>
+	<!-- End of Results from APIS Section -->
+
+	<!-- About Section -->
+	<section id="about" class="bg-white border">
+		<div class="container p-5">
+			<div class="row align-items-center">
+				<div class="col-lg-6 info-left p-3">
+					<img class="img-fluid" src="./assets/images/about-japan-book.png" alt="Japanese city and book">
+				</div>
+				<div class="col-lg-6 info-right p-5">
+					<h1 class="my-5">What is <strong>CityBookWings</strong>?</h1>
+					<h5 class="my-4">
+						<strong>CityBookWings</strong> provides flight information for any city you'd like to travel
+						to, and recommends books about that city that you might like to read.
+					</h5>
+				</div>
+			</div>
+			<div class="row align-items-center">
+				<div class="col-lg-6 info-left p-5">
+					<h1 class="my-5">Make your trip memorable</h1>
+					<h5 class="my-4">
+						Whether you're planning a trip or simply interested in books about a specific location,
+						<strong>CityBookWings</strong> has you covered.
+					</h5>
+				</div>
+				<div class="col-lg-6 info-right p-3">
+					<img class="img-fluid" src="./assets/images/about-uk-book.png" alt="UK city and book">
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End of About Section -->
+
+	<!-- Recommended Cities Section -->
+	<section id="flights" class="p-5 bg-light border">
+		<h3 class="mb-5 text-center">Recommended Cities:</h3>
+		<div class="container mt-5">
+			<div class="row">
+
+				<!-- Shanghai Card -->
+				<div class="col-md-6 col-lg-3 mb-4">
+					<div class="card">
+						<img src="./assets/images/flight-china.png" class="card-img-top" alt="Shanghai Image">
+						<div class="card-body d-flex flex-column">
+							<h5 class="card-title">Shanghai, China</h5>
+							<p class="card-text">Flights from £500</p>
+							<a href="#" class="btn btn-warning mt-auto">Book Now</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- New York Card -->
+				<div class="col-md-6 col-lg-3 mb-4">
+					<div class="card">
+						<img src="./assets/images/flight-usa.png" class="card-img-top" alt="New York Image">
+						<div class="card-body d-flex flex-column">
+							<h5 class="card-title">New York, USA</h5>
+							<p class="card-text">Flights from £500</p>
+							<a href="#" class="btn btn-warning mt-auto">Book Now</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- Mumbai Card -->
+				<div class="col-md-6 col-lg-3 mb-4">
+					<div class="card">
+						<img src="./assets/images/flight-india.png" class="card-img-top" alt="Mumbai Image">
+						<div class="card-body d-flex flex-column">
+							<h5 class="card-title">Mumbai, India</h5>
+							<p class="card-text">Flights from £500</p>
+							<a href="#" class="btn btn-warning mt-auto">Book Now</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- Lagos Card -->
+				<div class="col-md-6 col-lg-3 mb-4">
+					<div class="card">
+						<img src="./assets/images/flight-nigeria.png" class="card-img-top" alt="Lagos Image">
+						<div class="card-body d-flex flex-column">
+							<h5 class="card-title">Lagos, Nigeria</h5>
+							<p class="card-text">Flights from £500</p>
+							<a href="#" class="btn btn-warning mt-auto">Book Now</a>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+	<!-- End of Recommended Cities Section -->
+
+	<!-- Recommended Books Section -->
+	<section id="books" class="p-5 bg-white border">
+		<h3 class="mb-5 text-center">Recommended Books:</h3>
+		<div class="container mt-5">
+			<div class="row">
+
+				<!-- South Korea Card -->
+				<div class="col-md-6 col-lg-3 mb-4">
+					<div class="card h-100">
+						<img src="./assets/images/book_mermaid_from_jeju.png" class="card-img-top"
+							alt="The_Mermaid_from_Jeju Book Cover">
+						<div class="card-body d-flex flex-column">
+							<p class="card-title">The Mermaid from Jeju</p>
+							<a href="https://openlibrary.org/books/OL30917787M/The_Mermaid_from_Jeju" class="btn btn-warning mt-auto"
+								target="_blank">Read Now</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- Japan Card -->
+				<div class="col-md-6 col-lg-3 mb-4">
+					<div class="card h-100">
+						<img src="./assets/images/book_tokyo_ueno_station.png" class="card-img-top"
+							alt="Tokyo_Ueno_Station Book Cover">
+						<div class="card-body d-flex flex-column">
+							<p class="card-title">Tokyo Ueno Station</p>
+							<a href="https://openlibrary.org/works/OL21177270W/Tokyo_Ueno_Station" class="btn btn-warning mt-auto"
+								target="_blank">Read Now</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- USA Card -->
+				<div class="col-md-6 col-lg-3 mb-4">
+					<div class="card h-100">
+						<img src="./assets/images/book_last_train_to_memphis.png" class="card-img-top"
+							alt="Last_Train_to_Memphis Book Cover">
+						<div class="card-body d-flex flex-column">
+							<p class="card-title">Last Train to Memphis</p>
+							<a href="https://openlibrary.org/works/OL1909616W/Last_Train_to_Memphis" class="btn btn-warning mt-auto"
+								target="_blank">Read Now</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- Italy Card -->
+				<div class="col-md-6 col-lg-3 mb-4">
+					<div class="card h-100">
+						<img src="./assets/images/book_midnight_in_sicily.png" class="card-img-top"
+							alt="Midnight_in_Sicily Book Cover">
+						<div class="card-body d-flex flex-column">
+							<p class="card-title">Midnight in Sicily</p>
+							<a href="https://openlibrary.org/works/OL1968482W/Midnight_in_Sicily" class="btn btn-warning mt-auto"
+								target="_blank">Read Now</a>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+	<!-- End of Recommended Books Section -->
+
+	<!-- Footer -->
+	<footer class="section border-top bg-light">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center my-5">
+					<p>&copy; 2024 CityBookWings<br>
+						<a class="nav-link m-4" href="https://github.com/AoifeEdX/city-book-wings" target="_blank"><i
+								class="fab fa-github"></i>
+							GitHub Repo</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- End of Footer -->
+
+	<!-- Bootstrap JS and dependencies -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+	<script src="./assets/js/loading.js"></script>
+	<script src="./assets/js/flights.js"></script>
+	<script src="./assets/js/books.js"></script>
+
+
+</body>
+
+</html>
