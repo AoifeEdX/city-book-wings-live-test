@@ -21,7 +21,7 @@ CityBookWings provides flight information for any city you'd like to travel to, 
 	* Get book recommendations related to their flight destination.
 * Uses the Bootstrap 5.3.2 framework for a polished and responsive design.
 * Uses custom CSS and JavaScript for animations and search functionality.
-* Uses localStorage to save the user's previous search results in their browser.
+* Uses localStorage to save the user's preferred flights and books.
 
 
 ## Credits
